@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Navidad - JhecaVlogs</title>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  overflow:hidden;
+  color:white;
+}
+
+.scene{
+  text-align:center;
+}
+
+.gift{
+  position:relative;
+  width:200px;
+  height:200px;
+  margin:0 auto;
+  cursor:pointer;
+}
+
+.box{
+  width:200px;
+  height:140px;
+  background:#e63946;
+  border-radius:0 0 10px 10px;
+  position:absolute;
+  bottom:0;
+}
+
+.lid{
+  width:210px;
+  height:60px;
+  background:#d62828;
+  position:absolute;
+  top:0;
+  left:-5px;
+  border-radius:10px 10px 0 0;
+  transform-origin:bottom center;
+  transition:transform 1.2s ease;
+}
+
+.ribbon-v{
+  position:absolute;
+  width:30px;
+  height:200px;
+  background:#ffd166;
+  left:85px;
+}
+
+.ribbon-h{
+  position:absolute;
+  width:200px;
+  height:30px;
+  background:#ffd166;
+  top:80px;
+}
+
+.gift.open .lid{
+  transform:rotateX(130deg) translateY(-20px);
+}
+
+.surprise{
+  opacity:0;
+  transform:scale(0.5);
+  transition:opacity 1s ease, transform 1s ease;
+}
+
+.gift.open + .surprise{
+  opacity:1;
+  transform:scale(1);
+}
+
+.images{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-top:30px;
+}
+
+.images img{
+  width:80px;
+  animation:float 3s ease-in-out infinite;
+}
+
+.images img:nth-child(2){animation-delay:0.5s;}
+.images img:nth-child(3){animation-delay:1s;}
+.images img:nth-child(4){animation-delay:1.5s;}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-15px)}
+}
+
+.message{
+  margin-top:30px;
+  font-size:1.3rem;
+  line-height:1.6;
+  animation:fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+.hint{
+  margin-top:15px;
+  font-size:0.9rem;
+  opacity:0.8;
+}
+</style>
+</head>
+<body>
+  <div class="scene">
+    <div class="gift" id="gift">
+      <div class="lid"></div>
+      <div class="box"></div>
+      <div class="ribbon-v"></div>
+      <div class="ribbon-h"></div>
+    </div>
+
+    <div class="surprise">
+      <div class="images">
+        <img src="https://cdn-icons-png.flaticon.com/512/3468/3468376.png" alt="Santa">
+        <img src="https://cdn-icons-png.flaticon.com/512/3468/3468371.png" alt="Snowman">
+        <img src="https://cdn-icons-png.flaticon.com/512/3468/3468370.png" alt="Gift">
+        <img src="https://cdn-icons-png.flaticon.com/512/3468/3468368.png" alt="Reindeer">
+      </div>
+      <div class="message">
+        Gracias por ayudarme a cumplir mi sueño.<br>
+        <strong>Feliz Navidad</strong> de parte de <strong>JhecaVlogs</strong> 🎄✨
+      </div>
+    </div>
+    <div class="hint">Haz clic en el regalo 🎁</div>
+  </div>
+
+<script>
+  const gift = document.getElementById('gift');
+  gift.addEventListener('click', () => {
+    gift.classList.toggle('open');
+  });
+</script>
+</body>
+</html>
