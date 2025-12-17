@@ -65,13 +65,9 @@ body{height:100vh;display:flex;justify-content:center;align-items:center;backgro
 
   <div class="surprise">
     <div class="images">
-      <!-- YouTube + cámara (vlogger) -->
       <img src="vlogger.png" alt="Vlogger">
-      <!-- Amigos -->
       <img src="friends.png" alt="Amigos">
-      <!-- Gafas aviador -->
       <img src="glasses.png" alt="Gafas aviador">
-      <!-- Plato con arroz -->
       <img src="rice.png" alt="Plato con arroz">
     </div>
     <div class="message" id="typeText"></div>
@@ -82,24 +78,23 @@ body{height:100vh;display:flex;justify-content:center;align-items:center;backgro
 
 <button class="musicBtn" id="musicBtn">🔊</button>
 
-<audio id="music" preload="auto" loop>
+<audio id="music" preload="auto" loop playsinline muted>
   <source src="https://cdn.pixabay.com/download/audio/2022/12/06/audio_7c3f0b1c92.mp3?filename=christmas-music-box-126485.mp3" type="audio/mpeg">
 </audio>
 
 <div class="fireworks" id="fireworks"></div>
 
 <script>
-const startBtn=document.getElementById('startBtn');
-const gift=document.getElementById('gift');
-const music=document.getElementById('music');
-const fireworks=document.getElementById('fireworks');
-const hint=document.getElementById('hintGift');
-const musicBtn=document.getElementById('musicBtn');
-const typeText=document.getElementById('typeText');
+const startBtn = document.getElementById('startBtn');
+const gift = document.getElementById('gift');
+const music = document.getElementById('music');
+const fireworks = document.getElementById('fireworks');
+const hint = document.getElementById('hintGift');
+const musicBtn = document.getElementById('musicBtn');
+const typeText = document.getElementById('typeText');
 
-const message="Gracias por ayudarme a cumplir mi sueño.\nFeliz Navidad de parte de JhecaVlogs 🎁✨";
+const message = "Gracias por ayudarme a cumplir mi sueño.\nFeliz Navidad de parte de JhecaVlogs 🎁✨";
 
-// nieve
 for(let n=0;n<50;n++){
   const s=document.createElement('div');
   s.className='snow';
@@ -110,23 +105,31 @@ for(let n=0;n<50;n++){
   document.body.appendChild(s);
 }
 
-startBtn.addEventListener('click',()=>{
+startBtn.addEventListener('click', () => {
   startBtn.style.display='none';
   gift.style.display='block';
   hint.style.display='block';
+
+  music.muted=false;
   music.volume=0.8;
-  music.play();
+  music.play().catch(()=>{});
 });
 
-musicBtn.addEventListener('click',()=>{
-  if(music.paused){music.play();musicBtn.textContent='🔊'}
-  else{music.pause();musicBtn.textContent='🔇'}
+musicBtn.addEventListener('click', () => {
+  music.muted=false;
+  if(music.paused){
+    music.play();
+    musicBtn.textContent='🔊';
+  }else{
+    music.pause();
+    musicBtn.textContent='🔇';
+  }
 });
 
 let opened=false;
 let fireworksInterval;
 
-gift.addEventListener('click',()=>{
+gift.addEventListener('click', () => {
   if(opened) return;
   opened=true;
   gift.classList.add('open');
